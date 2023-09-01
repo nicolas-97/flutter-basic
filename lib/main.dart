@@ -1,65 +1,57 @@
 import 'package:flutter/material.dart';
 
+
 void main() {
-  runApp(const MyApp());
+  runApp(HomePage());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class HomePage extends StatefulWidget {
+  State<HomePage> createState() => _HomePageState();
+}
 
-  // This widget is the root of your application.
+class _HomePageState extends State<HomePage> {
+
+  String _password = '';
+
   @override
-  Widget build(BuildContext context) {
-    String image = 'https://seeklogo.com/images/A/android-logo-8F906C4135-seeklogo.com.png';
-
+  Widget build (BuildContext context){
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Hola, bienvenido'),
-          actions: [
-            TextButton(onPressed: () => {
-              print('Se ha clickeado')
-            }, child: const Text('Hola', 
-              style: TextStyle(
-                color: Colors.white
-                ),
-              ),
-              onLongPress: () => {},
+        appBar: AppBar(),
+        body: Center(
+          child: Container(
+            //color: Colors.black,
+            /*margin: EdgeInsets.only(
+              top: 60,
             ),
-            IconButton(onPressed: () => {},
-              icon: Icon(Icons.arrow_right),
-            ),
-          ],
-        ),
-
-        
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Hola Mundo', style: 
-              TextStyle(
-                fontSize: 30
-              ),
-            ),
-            Image.network(
-              image
-            ),
-            Image.asset('images/logo.png'),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            padding: EdgeInsets.only(
+              top: 120
+            ),*/
+            child: Column(
               children: [
-                Text('Home', style: TextStyle(fontSize: 30)),
-                Text('Products', style: TextStyle(fontSize: 30),)
+                TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Password'
+                  ),
+                  onChanged: (String text) {
+                    /**
+                     * _password = text;
+                      print('La variables es: $_password');
+                      print('El texto es: $text');
+                     */
+                    setState(() {
+                      _password = text;
+                    });
+                  },
+                ),
+                Text(_password)
               ],
             )
-          ],
+            ),
         )
-      )
+      ),
     );
   }
 }
